@@ -16,6 +16,11 @@ export class PackageController {
         return await this.packageService.getPackages();
     }
 
+    async getPackageById(packageId) {
+        this.logger.info('Controller: getPackageById', null)
+        return await this.packageService.getPackageById(packageId);
+    }
+
     async createPackage(_package) {
         this.logger.info('Controller: createPackage', _package);
         return await this.packageService.createPackage(_package);

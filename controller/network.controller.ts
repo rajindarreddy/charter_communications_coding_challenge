@@ -1,5 +1,6 @@
 import { APILogger } from '../logger/api.logger';
 import { NetworkService } from '../service/network.service';
+import { ShowService } from '../service/show.service';
 
 export class NetworkController {
 

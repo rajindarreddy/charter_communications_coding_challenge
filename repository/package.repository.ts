@@ -29,6 +29,18 @@ export class PackageRepository {
         }
     }
 
+    async getPackageById(packageId) {
+        
+        try {
+            const packages = await this.packageRespository.findByPk(packageId);
+            console.log('packages:::', packages);
+            return packages;
+        } catch (err) {
+            console.log(err);
+            return [];
+        }
+    }
+
     async createPackage(_package) {
         let data = {};
         try {

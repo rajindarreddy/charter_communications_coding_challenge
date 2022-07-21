@@ -12,6 +12,14 @@ export class PackageService {
         return await this.packageRepository.getPackages();
     }
 
+    async getPackageId() {
+        return await this.packageRepository.getPackages();
+    }
+    
+    async getPackageById(packageID) {
+        return await this.packageRepository.getPackageById(packageID);
+    }
+
     async createPackage(_package) {
         return await this.packageRepository.createPackage(_package);
     }

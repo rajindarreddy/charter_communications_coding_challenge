@@ -167,12 +167,18 @@
             }
         },
 
-        "/packages" : {
+        "/packages/{id}" : {
             "get" : {
                 "summary" : "Get all the package",
                 "description": "Get all the packages",
                 "produces": ["application/json"],
-                "parameters": [],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "package id that needs to be fetched",
+                    "required": true,
+                    "type": "string"
+                }],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -322,7 +328,20 @@
                 "summary" : "Get all the show",
                 "description": "Get all the shows",
                 "produces": ["application/json"],
-                "parameters": [],
+                "parameters": [{  
+                    "name":"network_id",
+                    "in":"query",
+                    "description":"The shows that needs to be fetched by network Id",
+                    "required":true,
+                    "type":"string"
+                 },
+                 {  
+                    "name":"package_id",
+                    "in":"query",
+                    "description":"The shows that needs to be fetched by package Id.",
+                    "required":true,
+                    "type":"string"
+                 }],
                 "responses": {
                     "200": {
                         "description": "successful operation",

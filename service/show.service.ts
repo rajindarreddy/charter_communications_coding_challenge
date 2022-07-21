@@ -11,7 +11,12 @@ export class ShowService {
     async getShows() {
         return await this.showRepository.getShows();
     }
-
+    async getShowsByNetworkId(networkId) {
+        return await this.showRepository.getShowsByNetworkId(networkId);
+    }
+    async getShowsByNetworkIds(networkIds) {
+        return await this.showRepository.getShowsByNetworkIds(networkIds);
+    }
     async createShow(show) {
         return await this.showRepository.createShow(show);
     }

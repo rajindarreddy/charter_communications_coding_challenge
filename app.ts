@@ -45,7 +45,7 @@ class App {
         this.express.get('/api/networks', (req, res) => {
             this.networkController.getNetworks().then(data => res.json(data));
         });
-        
+
         this.express.post('/api/network', (req, res) => {
             console.log(req.body);
             this.networkController.createNetwork(req.body.network).then(data => res.json(data));
@@ -61,8 +61,12 @@ class App {
 
 
 
-        this.express.get('/api/packages', (req, res) => {
-            this.packageController.getPackages().then(data => res.json(data));
+        this.express.get('/api/packages/:id', (req, res) => {
+            if (req.params.id) {
+                this.packageController.getPackageById(req.params.id).then(data => res.json(data));
+            }else {
+                this.packageController.getPackages().then(data => res.json(data));
+            }
         });
         
         this.express.post('/api/package', (req, res) => {
@@ -73,6 +77,10 @@ class App {
         this.express.put('/api/package', (req, res) => {
             this.packageController.updatePackage(req.body.package).then(data => res.json(data));
         });
+
+        this.express.get('/api/package/:id', (req, res) => {
+            
+        });
         
         this.express.delete('/api/package/:id', (req, res) => {
             this.packageController.deletePackage(req.params.id).then(data => res.json(data));
@@ -80,9 +88,17 @@ class App {
 
 
         this.express.get('/api/shows', (req, res) => {
-            this.showController.getShows().then(data => res.json(data));
+            if (req.query.network_id) {
+                this.showController.getShowsByNetworkId(req.query.network_id).then(data => res.json(data));
+            }
+            else  if (req.query.package_id) {
+                this.showController.getShowsByPackageId(req.query.package_id).then(data => res.json(data));
+            }
+            else {
+                this.showController.getShows().then(data => res.json(data));
+            }
         });
-        
+
         this.express.post('/api/show', (req, res) => {
             console.log(req.body);
             this.showController.createShow(req.body.show).then(data => res.json(data));

@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { connect } from "../config/db.config";
 import { APILogger } from '../logger/api.logger';
 import { Shows } from "../model/show.model";
@@ -21,6 +22,40 @@ export class ShowRepository {
         
         try {
             const shows = await this.showRespository.findAll();
+            console.log('shows:::', shows);
+            return shows;
+        } catch (err) {
+            console.log(err);
+            return [];
+        }
+    }
+
+    async getShowsByNetworkId(networkId) {
+        
+        try {
+            const shows = await this.showRespository.findAll({
+                where: {
+                    network: networkId
+                }
+            });
+            console.log('shows:::', shows);
+            return shows;
+        } catch (err) {
+            console.log(err);
+            return [];
+        }
+    }
+
+    async getShowsByNetworkIds(networkIds) {
+    
+        try {
+            const shows = await this.showRespository.findAll({
+                where: {
+                    network: {
+                       [Op.in] : networkIds
+                    }
+                }
+            });
             console.log('shows:::', shows);
             return shows;
         } catch (err) {
