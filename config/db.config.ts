@@ -20,6 +20,9 @@ export const connect = () => {
         dialect,
         operatorsAliases,
         repositoryMode: true,
+        define:{
+            timestamps: false
+        },
         pool: {
             max: 10,
             min: 0,
