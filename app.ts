@@ -68,6 +68,11 @@ class App {
                 this.packageController.getPackages().then(data => res.json(data));
             }
         });
+
+        this.express.get('/api/packages', (req, res) => {
+            
+                this.packageController.getPackages().then(data => res.json(data));
+        });
         
         this.express.post('/api/package', (req, res) => {
             console.log(req.body);
